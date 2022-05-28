@@ -34,5 +34,24 @@ namespace WebService03Cliente
 
             textBox1.Text = msg;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            object[][] data = listas.ListaDeArreglos();
+
+            string msg = "";
+
+            foreach (object[] fil in data)
+            {
+                foreach(object col in fil)
+                {
+                    msg += col + "\t";
+                }
+
+                msg += "\r\n";
+            }
+
+            textBox1.Text = msg;
+        }
     }
 }

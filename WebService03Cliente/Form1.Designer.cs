@@ -63,6 +63,7 @@ namespace WebService03Cliente
             this.button2.TabIndex = 2;
             this.button2.Text = "Leer Lista de Arreglos";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
