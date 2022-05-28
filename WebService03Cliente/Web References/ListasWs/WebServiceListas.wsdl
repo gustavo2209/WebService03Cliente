@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ListaSimple">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaSimpleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaSimpleResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaDeArreglos">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaDeArreglosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaDeArreglosResult" type="tns:ArrayOfArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfAnyType" nillable="true" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListaSimpleSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaSimple" />
+  </wsdl:message>
+  <wsdl:message name="ListaSimpleSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaSimpleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaDeArreglosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaDeArreglos" />
+  </wsdl:message>
+  <wsdl:message name="ListaDeArreglosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaDeArreglosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceListasSoap">
+    <wsdl:operation name="ListaSimple">
+      <wsdl:input message="tns:ListaSimpleSoapIn" />
+      <wsdl:output message="tns:ListaSimpleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaDeArreglos">
+      <wsdl:input message="tns:ListaDeArreglosSoapIn" />
+      <wsdl:output message="tns:ListaDeArreglosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceListasSoap" type="tns:WebServiceListasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaSimple">
+      <soap:operation soapAction="http://tempuri.org/ListaSimple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDeArreglos">
+      <soap:operation soapAction="http://tempuri.org/ListaDeArreglos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceListasSoap12" type="tns:WebServiceListasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaSimple">
+      <soap12:operation soapAction="http://tempuri.org/ListaSimple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaDeArreglos">
+      <soap12:operation soapAction="http://tempuri.org/ListaDeArreglos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceListas">
+    <wsdl:port name="WebServiceListasSoap" binding="tns:WebServiceListasSoap">
+      <soap:address location="http://localhost:51671/WebServiceListas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceListasSoap12" binding="tns:WebServiceListasSoap12">
+      <soap12:address location="http://localhost:51671/WebServiceListas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
